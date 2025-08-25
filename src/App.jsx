@@ -19,6 +19,7 @@ function App() {
       <About />
       <Art />
       <Menu />
+      <Contact />
     </main>
   )
 }
