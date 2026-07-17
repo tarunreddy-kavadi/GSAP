@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gsap-deployment
+  labels:
+    app: gsap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gsap
+  template:
+    metadata:
+      labels:
+        app: gsap
+    spec:
+      containers:
+        - name: gsap-deploy
+          image: mittu999/gsap_image:replaceImageTag
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: secret-volume
+              mountPath: "/etc/secret-volume"
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: secret-demo
+            optional: true
