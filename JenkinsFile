@@ -1,8 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'mittu999/gsap_image:v1'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+ image 'node:22-alpine'
     }
   }
   stages {
@@ -24,6 +23,7 @@ pipeline {
         // sh 'ls -ltr'
         // build the project and create a JAR file
         // sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
+          sh 'docker build -t mittu999/gsap_image:v1 .'
         sh 'npm run build'
       }
     }
