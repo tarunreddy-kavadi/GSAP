@@ -12,6 +12,11 @@ pipeline {
       }
     }
     stage ('Install dependencies') {
+         agent {
+           docker {
+             image 'node:22-alpine'
+                }
+              }
         steps {
 // Creates a local cache directory in your workspace and tells npm to use it
        sh 'npm install --cache .npm-cache'
@@ -20,13 +25,11 @@ pipeline {
         }
     }
     stage('Build and Test') {
-      steps {
-        // sh 'ls -ltr'
-        // build the project and create a JAR file
-        // sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
-          sh 'docker build -t mittu999/gsap_image:v1 .'
-        sh 'npm run build'
-      }
+          agent any // This drops back down to your EC2 host machine where the 'docker' command is installed
+            steps {
+                // This will now find the docker command perfectly
+                sh 'docker build -t mittu999/gsap_image:v1 .'
+            }
     }
     
         stage('Static Code Analysis') {
