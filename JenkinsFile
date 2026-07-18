@@ -14,11 +14,9 @@ pipeline {
     stage ('Install dependencies') {
         steps {
 // Creates a local cache directory in your workspace and tells npm to use it
-        sh 'mkdir -p .npm-cache'
-        sh 'npm config set cache .npm-cache'
+       sh 'npm install --cache .npm-cache'
             sh 'node -v'
             sh 'npm -v'
-            sh 'npm install'
         }
     }
     stage('Build and Test') {
