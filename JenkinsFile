@@ -36,14 +36,14 @@ agent any
                 SONAR_URL = "http://34.201.116.83:9000"
             }
             steps {
-                withCredentials([string(credentialsId: 'sonarqube', variable: 'SONARQUBE_SECRET')]) {
+                withCredentials([string(credentialsId: 'SONARQUBE_SECRET', variable: 'SONARQUBE_SECRET')]) {
                     // We run a Docker container on the fly specifically to execute the scanner command
                     sh """
                         docker run --rm \
                           -v \$(pwd):/usr/src \
                           sonarsource/sonar-scanner-cli:latest \
                           -Dsonar.host.url=${SONAR_URL} \
-                          -Dsonar.login=${SONAR_AUTH_TOKEN} \
+                          -Dsonar.login=${SONARQUBE_SECRET} \
                           -Dsonar.projectKey=gsap \
                           -Dsonar.projectName=GSAP \
                           -Dsonar.sources=. \
