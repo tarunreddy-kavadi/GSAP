@@ -15,7 +15,7 @@ agent any
               }
         steps {
 // Creates a local cache directory in your workspace and tells npm to use it
-       sh 'npm install --cache .npm-cache'
+       sh 'npm install'
             sh 'node -v'
             sh 'npm -v'
         }
