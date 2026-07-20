@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gsap-deploy
-          image: mittu999/gsap_image:replaceImageTag
+          image: mittu999/gsap_image:30
           ports:
             - containerPort: 80
           volumeMounts:
