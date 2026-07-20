@@ -56,7 +56,7 @@ agent any
     stage('Build and Push Docker Image') {
     environment {
         DOCKER_IMAGE = "mittu999/gsap_image:v1.${BUILD_NUMBER}"
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
+        REGISTRY_CREDENTIALS = credentials('docker_cred')
     }
     steps {
         script {
