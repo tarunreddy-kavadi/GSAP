@@ -23,7 +23,7 @@ const Navbar = () => {
         <nav>
             <div>
                 <a href='#home' className='flex items-center gap-2'>
-                    <p>Jai Sree Ram</p>
+                    <p>HURRICANE ROOMS</p>
                 </a>
                 <ul>
                     {
